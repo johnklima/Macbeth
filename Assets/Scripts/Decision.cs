@@ -6,7 +6,8 @@ using UnityEngine.AI;
 
 public class Decision : MonoBehaviour
 {
-   
+
+    [SerializeField] float delay = 3f;
 
     // Start is called before the first frame update
     void Start()
@@ -18,7 +19,7 @@ public class Decision : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
     }
     private void OnEnable()
     {
@@ -41,7 +42,7 @@ public class Decision : MonoBehaviour
 
             agent = npc.getAgent();
             agent.isStopped = true;
-
+            npc.startDelay(delay);
             
 
             if(transform.childCount > 0)

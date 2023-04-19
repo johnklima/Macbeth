@@ -12,6 +12,11 @@ public class NPC : MonoBehaviour
     
     [SerializeField] Transform target;
     [SerializeField] float speed;
+
+
+    private float pauseTimer = -1;
+    [SerializeField] float delay = 3f;
+            
    
 
     public float stopDistance = 1.0f;
@@ -23,22 +28,25 @@ public class NPC : MonoBehaviour
 
         agent = GetComponent<NavMeshAgent>();
         animState = GetComponent<Animator>();
-
-        agent.SetDestination(target.position);
+    
+        if(target)
+            agent.SetDestination(target.position);
 
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (pauseTimer > 0 && Time.time - pauseTimer > delay)
+        {
+          agent.isStopped = false;
+            pauseTimer = -1;
+        }
 
+        if (target)
+            agent.SetDestination(target.position);
 
-        agent.SetDestination(target.position);
-
-        //if (agent.remainingDistance < stopDistance)
-        //    agent.isStopped = true;
-
-
+       
         //find the speed
         Vector3 velo = new Vector3(agent.velocity.x, 0, agent.velocity.z);
         speed = velo.magnitude;
@@ -67,5 +75,11 @@ public class NPC : MonoBehaviour
     public NavMeshAgent getAgent()
     {
         return agent;
+    }
+
+    public void startDelay(float _delay)
+    {
+        delay = _delay;
+        pauseTimer = Time.time;
     }
 }
