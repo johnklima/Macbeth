@@ -55,11 +55,12 @@ public class DialogueCamera : MonoBehaviour
 
         MoveDiaCam(); // Calls the function allowing us to move smoothly
 
-
+        /*
         if(Input.GetKeyDown(KeyCode.Space)) // Temporary method to get the player out of dialogue mode, you can call this function however you'd like though!
         {
             DisableDialogueCamera(); //  <-- Copy this and place it at the end of your dialogue or call it in a different script since its a public function!
         }
+        */
     }
 
     private void EnableDialogueCamera()
