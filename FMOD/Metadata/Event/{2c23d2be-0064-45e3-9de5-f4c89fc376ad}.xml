@@ -333,7 +333,7 @@
 			<value>32</value>
 		</property>
 		<property name="name">
-			<value>END E</value>
+			<value>CAMERA RELEASE</value>
 		</property>
 		<relationship name="timeline">
 			<destination>{a31298c5-d1c5-450d-8cb2-29cfa22f9f54}</destination>

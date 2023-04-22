@@ -33,41 +33,27 @@ class ScriptUsageTimeline : MonoBehaviour
         public int CurrentMusicBar = 0;
         public FMOD.StringWrapper LastMarker = new FMOD.StringWrapper();
         public String objName;
-        public Transform objAudio;
-        public Transform owner;
-        public void Talk(bool isTalking)
-        {
-            owner.GetComponent<Animator>().SetBool("isTalking", isTalking);
-        }
+        public Transform owner;       
+        public AudioTimelineMarkerHandler handler;
     }
 
     TimelineInfo timelineInfo;
     GCHandle timelineHandle;
 
     public FMODUnity.EventReference EventName;
-    [SerializeField] Transform objAudio;
 
+    
     FMOD.Studio.EVENT_CALLBACK markerCallback;
     FMOD.Studio.EventInstance eventInstance;
 
-    FMODUnity.StudioEventEmitter eventEmitter;
-
-
-
-#if UNITY_EDITOR
-    void Reset()
-    {
-        EventName = FMODUnity.EventReference.Find("event:/music/music");
-    }
-#endif
 
     void Start()
     {
         timelineInfo = new TimelineInfo();
 
-        timelineInfo.objName = transform.name;
-        timelineInfo.objAudio = objAudio;
         timelineInfo.owner = transform;
+        timelineInfo.objName = transform.name;
+        timelineInfo.handler = transform.GetComponent<AudioTimelineMarkerHandler>();
 
         // Explicitly create the delegate object and assign it to a member so it doesn't get freed
         // by the garbage collected while it's being used
@@ -83,8 +69,7 @@ class ScriptUsageTimeline : MonoBehaviour
         eventInstance.setCallback(markerCallback, FMOD.Studio.EVENT_CALLBACK_TYPE.TIMELINE_BEAT | FMOD.Studio.EVENT_CALLBACK_TYPE.TIMELINE_MARKER);
         eventInstance.start();
 
-        //to attenuate volume we will simply move the audio emmiter down/up from hell
-        objAudio.localPosition = Vector3.down * 666;
+        
         
     }
 
@@ -140,21 +125,23 @@ class ScriptUsageTimeline : MonoBehaviour
                     {
                         var parameter = (FMOD.Studio.TIMELINE_MARKER_PROPERTIES)Marshal.PtrToStructure(parameterPtr, typeof(FMOD.Studio.TIMELINE_MARKER_PROPERTIES));
                         timelineInfo.LastMarker = parameter.name;
+                        
                         Debug.Log("MARKER " + parameter.name);
 
-                        //basically we want to "volume up" only when this character is speaking, on our event emmiter
-                        //so bring it up. ALL characters will be getting the FMOD callback
-                        //to make this easy for copy/paste markers we use a String.Contains()
+                        //ALL objects will be getting the FMOD callback if it has this script
+                        //to make this easy for copy/paste in FMOD, markers we use a String.Contains()
+
                         String marker = parameter.name;
+
                         if ( marker.Contains(timelineInfo.objName) )
                         {
-                            timelineInfo.objAudio.localPosition = Vector3.up * 2;
-                            timelineInfo.Talk(true);
+                            //if this marker is pointing at me, handle me.
+                            timelineInfo.handler.HandleIt(true);
                         }
                         else 
                         {
-                            timelineInfo.objAudio.localPosition = Vector3.down * 666;
-                            timelineInfo.Talk(false);
+                            //otherwise, handle me with a false condition, it's not me.
+                            timelineInfo.handler.HandleIt(false);
                         }
                         
 
