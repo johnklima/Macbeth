@@ -32,6 +32,8 @@ public class DialogueCamera : MonoBehaviour
 
     bool bInDialogue = false;
 
+    private Vector3 prevCamPos;
+    private Quaternion prevCamRot;
 
     // Start is called before the first frame update
     void Start()
@@ -54,7 +56,7 @@ public class DialogueCamera : MonoBehaviour
         MoveDiaCam(); // Calls the function allowing us to move smoothly
 
 
-        if(Input.GetKeyDown(KeyCode.Space)) // Temporary methood to get the player out of dialogue mode, you can call this function however you'd like though!
+        if(Input.GetKeyDown(KeyCode.Space)) // Temporary method to get the player out of dialogue mode, you can call this function however you'd like though!
         {
             DisableDialogueCamera(); //  <-- Copy this and place it at the end of your dialogue or call it in a different script since its a public function!
         }
@@ -62,6 +64,9 @@ public class DialogueCamera : MonoBehaviour
 
     private void EnableDialogueCamera()
     {
+
+        prevCamPos = playerCamera.transform.position;
+        prevCamRot = playerCamera.transform.rotation;
 
         playerDiaCamOBJ.transform.position = playerCamera.transform.position;
         playerDiaCamOBJ.transform.rotation = playerCamera.transform.rotation;
@@ -77,16 +82,18 @@ public class DialogueCamera : MonoBehaviour
 
     public void DisableDialogueCamera()
     {
-        playerDiaCamOBJ.SetActive(false); // disableCamera
+        playerDiaCamOBJ.SetActive(false); // disableCamera        
+
+        playerCamera.SetActive(true);
+        
+        playerCamera.GetComponent<CameraContoller>().CameraReset(playerDiaCamOBJ.transform.position, 
+            playerDiaCamOBJ.transform.rotation);
+
         playerDiaCamOBJ.transform.position = new Vector3(0,0,0); // reset Camera.
         playerDiaCamOBJ.transform.rotation = new Quaternion(0,0,0,0); // reset Camera.
 
-        playerCamera.SetActive(true);
-        if (playerCamera.GetComponent<CameraContoller>().lockCursor)
-        {
-            Cursor.lockState = CursorLockMode.Locked;
-            Cursor.visible = false;
-        }
+       
+
         playerController.enabled = true;
 
         bInDialogue = false;
@@ -99,7 +106,12 @@ public class DialogueCamera : MonoBehaviour
             EnableDialogueCamera();
             bInDialogue = true;
 
-            transform.GetComponent<BoxCollider>().enabled = false;
+            if(transform.GetComponent<BoxCollider>())
+                transform.GetComponent<BoxCollider>().enabled = false;
+            else if (transform.GetComponent<SphereCollider>() )
+                transform.GetComponent<SphereCollider>().enabled = false;
+
+
         }
     }
 
