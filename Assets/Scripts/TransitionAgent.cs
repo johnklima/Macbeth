@@ -30,6 +30,7 @@ public class TransitionAgent : MonoBehaviour
         //refresh the destination
         if (target && go)
             agent.SetDestination(target.position);
+        
 
     }
 }

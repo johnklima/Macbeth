@@ -1,12 +1,17 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
-public class PlayerDecision : MonoBehaviour
+public class TransitionAgentDecision : MonoBehaviour
 {
 
     [SerializeField] TransitionAgent agent;
-    
+    [SerializeField] string text;
+    [SerializeField] Text textToShow;
+    [SerializeField] Image imageToShow;
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -21,12 +26,14 @@ public class PlayerDecision : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        
         if(other.tag == "MobileTransitionObject")
         {
+            Debug.Log("Agent Hit Decision");
 
             if (transform.childCount > 0)
             {
-
+                //test first with random
                 int which = Random.Range(0, transform.childCount);
 
                 Transform goal = transform.GetChild(which);
