@@ -8,9 +8,9 @@ public class TextMarkerHandler : AudioTimelineMarkerHandler
 {
 
     
-    [SerializeField] Text textShow;
+    [SerializeField] Text textToShow;
     [SerializeField] Image imageToShow;
-    [SerializeField] string textToShow;
+    [SerializeField] string text;
     [SerializeField] DecisionSignTimeout signTimeout;
 
     public override void HandleIt(bool onoff)
@@ -20,15 +20,15 @@ public class TextMarkerHandler : AudioTimelineMarkerHandler
         if(onoff == true)
         {
             imageToShow.enabled = true;
-            textShow.enabled = true;
-            textShow.text = textToShow;
+            textToShow.enabled = true;
+            textToShow.text = text;
             signTimeout.KickOff();
         }
 
     }
 
-    public void SetText(string _textToShow)
+    public void SetText(string _text)
     {
-        textToShow = _textToShow;
+        text = _text;
     }
 }
