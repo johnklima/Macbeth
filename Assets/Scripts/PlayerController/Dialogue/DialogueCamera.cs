@@ -91,9 +91,7 @@ public class DialogueCamera : MonoBehaviour
             playerDiaCamOBJ.transform.rotation);
 
         playerDiaCamOBJ.transform.position = new Vector3(0,0,0); // reset Camera.
-        playerDiaCamOBJ.transform.rotation = new Quaternion(0,0,0,0); // reset Camera.
-
-       
+        playerDiaCamOBJ.transform.rotation = new Quaternion(0,0,0,0); // reset Camera.       
 
         playerController.enabled = true;
 

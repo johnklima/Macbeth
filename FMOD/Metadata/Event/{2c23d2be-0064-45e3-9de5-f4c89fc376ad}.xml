@@ -2,7 +2,7 @@
 <objects serializationModel="Studio.02.02.00">
 	<object class="Event" id="{2c23d2be-0064-45e3-9de5-f4c89fc376ad}">
 		<property name="name">
-			<value>Act 1</value>
+			<value>Act 1 Scene 1</value>
 		</property>
 		<property name="outputFormat">
 			<value>2</value>
@@ -120,7 +120,7 @@
 	<object class="MixerBusPanner" id="{4c7d694c-4752-42c1-9124-a9f260cd0639}" />
 	<object class="SingleSound" id="{b76e4719-3449-4f92-9246-bbd478da4671}">
 		<property name="length">
-			<value>1688.8462915148752</value>
+			<value>34</value>
 		</property>
 		<property name="timelockedOffset">
 			<value>25.961871750433275</value>

@@ -28,6 +28,9 @@ using UnityEngine;
 
 class ScriptUsageTimeline : MonoBehaviour
 {
+
+    [SerializeField] GameObject FMODAudioObject;
+
     class TimelineInfo
     {
         public int CurrentMusicBar = 0;
@@ -38,6 +41,7 @@ class ScriptUsageTimeline : MonoBehaviour
     }
 
     TimelineInfo timelineInfo;
+
     GCHandle timelineHandle;
 
     public FMODUnity.EventReference EventName;
@@ -67,10 +71,25 @@ class ScriptUsageTimeline : MonoBehaviour
         eventInstance.setUserData(GCHandle.ToIntPtr(timelineHandle));
 
         eventInstance.setCallback(markerCallback, FMOD.Studio.EVENT_CALLBACK_TYPE.TIMELINE_BEAT | FMOD.Studio.EVENT_CALLBACK_TYPE.TIMELINE_MARKER);
-        eventInstance.start();
+        
 
         
         
+    }
+
+    public void startTimeline()
+    {
+        Debug.Log("start timeline");
+        eventInstance.start();
+        FMODAudioObject.SetActive(true);
+
+    }
+    public void stopTimeline()
+    {
+        eventInstance.setUserData(IntPtr.Zero);
+        eventInstance.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
+        eventInstance.release();
+        timelineHandle.Free();
     }
 
     void OnDestroy()

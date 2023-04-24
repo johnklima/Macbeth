@@ -37,4 +37,9 @@ public class CharacterMarkerHandler : AudioTimelineMarkerHandler
         }
 
     }
+
+    public FMODUnity.StudioEventEmitter getEmmitter()
+    {
+        return objAudio.GetComponent<FMODUnity.StudioEventEmitter>();
+    }
 }
