@@ -31,6 +31,17 @@ public class TransitionAgentDecision : MonoBehaviour
         {
             Debug.Log("Agent Hit Decision");
 
+            if (textToShow)
+            {
+                textToShow.enabled = true;
+                textToShow.text = text;
+            }
+            if(imageToShow)
+            {
+                imageToShow.enabled = true;
+                imageToShow.GetComponent<DecisionSignTimeout>().KickOff();
+            }
+
             if (transform.childCount > 0)
             {
                 //test first with random
