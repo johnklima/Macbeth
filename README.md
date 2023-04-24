@@ -9,6 +9,8 @@ Folger Shakespeare Library
 https://shakespeare.folger.edu/shakespeares-works/macbeth/
 Created on Jul 31, 2015, from FDT version 0.9.2
 
+Audio from LibriVox: https://librivox.org/the-tragedy-of-macbeth-by-william-shakespeare/
+
 Characters in the Play
 ======================
 Three Witches, the Weird Sisters
