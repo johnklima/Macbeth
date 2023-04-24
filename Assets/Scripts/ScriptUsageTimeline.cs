@@ -81,7 +81,9 @@ class ScriptUsageTimeline : MonoBehaviour
     {
         Debug.Log("start timeline");
         eventInstance.start();
-        FMODAudioObject.SetActive(true);
+
+        if(FMODAudioObject)
+            FMODAudioObject.SetActive(true);
 
     }
     public void stopTimeline()

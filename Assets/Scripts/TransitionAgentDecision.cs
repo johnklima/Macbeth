@@ -7,116 +7,127 @@ using UnityEngine.AI;
 public class TransitionAgentDecision : MonoBehaviour
 {
 
-    [SerializeField] TransitionAgent agent;
-    [SerializeField] string text;
-    [SerializeField] Text textToShow;
-    [SerializeField] Image imageToShow;
-    [SerializeField] GameObject buttonToShow;  //buton base object is actually a gameobject, not a button per se
+    [SerializeField] TransitionAgent agent;         // a boat in most cases
+    [SerializeField] string text;                   // the question asked text, or the button text
+    [SerializeField] Text textToShow;               // the question prompt textbox, or button text
+    [SerializeField] RectTransform GUIcontainer;    // the signpost to display the question
 
-    
+
+
+    [SerializeField] RectTransform[] buttonsToHide;  //all the buttons that might be visible
+
+    [SerializeField] RectTransform thisButton;      //the button choice that this decision point represents
+
+
+    [SerializeField] bool isAQuestion = false;
+    [SerializeField] bool isADestination = false;
+    [SerializeField] DialogueCamera dialogueCamera;
 
     // Start is called before the first frame update
     void Start()
     {
-        Debug.Log(transform.name + " Start");
-        
+        Debug.Log(transform.name + " Start");        
     }
 
     void ButtonClicked()
     {
         Debug.Log(transform.name + " ButtonClicked");
+        
         //assign this transform to the agent, and kick him off
         agent.KickOff(transform);
 
-
-        if (imageToShow)
+        //hide all the GUI elements
+        for(int i = 0; i < buttonsToHide.Length; i++)
         {
-            //this IMAGE is the main container for 2d interaction
-            imageToShow.enabled = false;
-            
-        }
+            buttonsToHide[i].gameObject.SetActive(false);
 
-        if (buttonToShow)
-        {
-            //hide ALL buttons too.
-        
-            RectTransform buttons = (RectTransform) buttonToShow.transform;
-            foreach(GameObject child in buttons)
-            {
-                child.SetActive(false);
-            }
+            Button button = buttonsToHide[i].GetComponent<Button>();
 
-            //will be reusing the button, so get it
-            Button button = buttonToShow.GetComponent<Button>();
-            
-            //get the event
+            //get the event from it
             Button.ButtonClickedEvent bevent = button.onClick;
-            
-            //remove all listeners
+
+            //remove all listeners this decision node may have added
             bevent.RemoveAllListeners();
 
         }
 
-
-
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
+        if (GUIcontainer)
+            GUIcontainer.gameObject.SetActive(false);
         
+
     }
-    private void OnEnable()
+
+    private void OnEnable()    
     {
 
-        //this happens when a parent has enabled the location
+        //this happens when a parent has enabled the location/decision
+
         Debug.Log(transform.name + " OnEnable");
 
-        if (buttonToShow)
+        //any GUI associated with this decision node?
+        if (thisButton)
         {
-            buttonToShow.SetActive(true);
-            textToShow.text = text;
+            thisButton.gameObject.SetActive(true);            
 
-            //will be reusing the button, so get it
-            Button button = buttonToShow.GetComponent<Button>();
-            //get the event
+            //will be reusing the button, so get the actual button component
+            Button button = thisButton.GetComponent<Button>();
+            
+            
+            //get the event from it
             Button.ButtonClickedEvent bevent = button.onClick;
 
-            //add me
+            //add me as a listener to the click
             bevent.AddListener(ButtonClicked);
 
+            //assign text to button
+            textToShow.text = text;
+
+        }
+
+        if (GUIcontainer)
+        {
+            GUIcontainer.gameObject.SetActive(true);
         }
     }
     
     private void OnTriggerEnter(Collider other)
     {
         
-        if(other.tag == "MobileTransitionObject")
+        if(other.tag == "MobileTransitionObject") // a boat in most cases
         {
             Debug.Log("Agent Hit Decision");
 
-            if (textToShow)
+            //if it is a question being asked, we stuff the GUI
+            if( isAQuestion )
             {
-                textToShow.enabled = true;
-                textToShow.text = text;
-            }
-            if(imageToShow)
-            {
-                imageToShow.enabled = true;                
-            }
-            if(buttonToShow)
-            {
-                buttonToShow.SetActive(true);
-            }
-
-            if (transform.childCount > 0)
-            {
-                for(int i = 0; i < transform.childCount; i++)
+                if (thisButton)
                 {
-                    transform.GetChild(i).gameObject.SetActive(true);  
+                    thisButton.gameObject.SetActive(true);
+
+                }
+
+                if (transform.childCount > 0)
+                {
+                    //this handles the activation of the child objects in this decision tree
+                    for (int i = 0; i < transform.childCount; i++)
+                    {
+                        transform.GetChild(i).gameObject.SetActive(true);
+                    }
+                }
+
+                if (GUIcontainer)
+                {
+                    GUIcontainer.gameObject.SetActive(true);
                 }
 
             }
+            else if (isADestination)
+            {
+                //release the dialogue camera
+                dialogueCamera.DisableDialogueCamera();
+            }
+
+            
         }
     }
 }
