@@ -23,6 +23,7 @@ public class TransitionAgent : MonoBehaviour
     {
         go = true;
         target = _target;
+        agent.isStopped = false;
     }
     // Update is called once per frame
     void Update()
