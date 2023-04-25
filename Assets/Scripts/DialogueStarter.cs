@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+
 public class DialogueStarter : MonoBehaviour
 {
 
@@ -11,7 +12,7 @@ public class DialogueStarter : MonoBehaviour
 
     private void Start()
     {
-        
+       
     }
 
     private void OnTriggerEnter(Collider other)

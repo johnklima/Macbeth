@@ -28,8 +28,9 @@ public class GenericTimeout : MonoBehaviour
         }
     }
 
-    public void KickOff()
+    public void KickOff(float _delay)
     {
+        delay = _delay;
         timer = Time.time;
     }
 }

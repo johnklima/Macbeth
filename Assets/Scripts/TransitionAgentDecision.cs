@@ -29,7 +29,7 @@ public class TransitionAgentDecision : MonoBehaviour
         Debug.Log(transform.name + " Start");        
     }
 
-    void ButtonClicked()
+    void myButtonClicked()
     {
         Debug.Log(transform.name + " ButtonClicked");
         
@@ -77,7 +77,7 @@ public class TransitionAgentDecision : MonoBehaviour
             Button.ButtonClickedEvent bevent = button.onClick;
 
             //add me as a listener to the click
-            bevent.AddListener(ButtonClicked);
+            bevent.AddListener(myButtonClicked);
 
             //assign text to button
             textToShow.text = text;
