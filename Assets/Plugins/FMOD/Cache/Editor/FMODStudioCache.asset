@@ -1,5 +1,32 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-8003615244583917455
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Boat Pirates 1
+  m_EditorClassIdentifier: 
+  Path: event:/Boat Pirates 1
+  Guid:
+    Data1: 1169340280
+    Data2: 1317105634
+    Data3: -1028344652
+    Data4: -378430028
+  Banks:
+  - {fileID: -4020834798877267899}
+  IsStream: 1
+  Is3D: 1
+  IsOneShot: 0
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 35500
 --- !u!114 &-4020834798877267899
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15,10 +42,10 @@ MonoBehaviour:
   Path: FMOD/Build/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 638180445067178127
+  lastModified: 638181166655581615
   FileSizes:
   - Name: Desktop
-    Value: 14104384
+    Value: 16185152
   Exists: 1
 --- !u!114 &-1727191199920193211
 MonoBehaviour:
@@ -35,10 +62,10 @@ MonoBehaviour:
   Path: FMOD/Build/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 638180445067187725
+  lastModified: 638181166655611521
   FileSizes:
   - Name: Desktop
-    Value: 806
+    Value: 908
   Exists: 1
 --- !u!114 &11400000
 MonoBehaviour:
@@ -58,13 +85,42 @@ MonoBehaviour:
   EditorEvents:
   - {fileID: 7149709905385475730}
   - {fileID: 6413766842741785136}
+  - {fileID: 3393608148752079683}
+  - {fileID: -8003615244583917455}
   EditorParameters: []
   MasterBanks:
   - {fileID: -4020834798877267899}
   StringsBanks:
   - {fileID: -1727191199920193211}
-  cacheTime: 638180445067187725
+  cacheTime: 638181166655611521
   cacheVersion: 131603
+--- !u!114 &3393608148752079683
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Lapping Water
+  m_EditorClassIdentifier: 
+  Path: event:/Lapping Water
+  Guid:
+    Data1: -82531580
+    Data2: 1192185678
+    Data3: -322276692
+    Data4: 1821839351
+  Banks:
+  - {fileID: -4020834798877267899}
+  IsStream: 1
+  Is3D: 1
+  IsOneShot: 0
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 94000
 --- !u!114 &6413766842741785136
 MonoBehaviour:
   m_ObjectHideFlags: 0

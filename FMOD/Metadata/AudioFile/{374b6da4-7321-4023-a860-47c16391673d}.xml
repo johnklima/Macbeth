@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="AudioFile" id="{374b6da4-7321-4023-a860-47c16391673d}">
+		<property name="assetPath">
+			<value>lappingwater.wav</value>
+		</property>
+		<property name="isStreaming">
+			<value>true</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>48</value>
+		</property>
+		<property name="channelCount">
+			<value>2</value>
+		</property>
+		<property name="length">
+			<value>121.57979166666667</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{a1a48e32-71fd-4191-8df5-308b761f551e}</destination>
+		</relationship>
+	</object>
+</objects>
