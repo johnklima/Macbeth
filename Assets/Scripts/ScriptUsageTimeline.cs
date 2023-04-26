@@ -30,6 +30,13 @@ class ScriptUsageTimeline : MonoBehaviour
 {
 
     [SerializeField] GameObject FMODAudioObject;
+    public int timelinePosition = 0;
+
+    public void setTimelinePosition(int milliseconds)
+    {
+        timelinePosition = milliseconds;
+        eventInstance.setTimelinePosition(milliseconds);
+    }
 
     class TimelineInfo
     {
@@ -77,13 +84,23 @@ class ScriptUsageTimeline : MonoBehaviour
         
     }
 
-    public void startTimeline()
+    public void startTimeline(int startPosition)
     {
         Debug.Log("start timeline");
-        eventInstance.start();
+
+        timelinePosition = startPosition;
+
+        setTimelinePosition(timelinePosition);
+        eventInstance.start();        
 
         if(FMODAudioObject)
+        {
             FMODAudioObject.SetActive(true);
+
+            FMODAudioObject.GetComponent<FMODUnity.StudioEventEmitter>()
+                .EventInstance.setTimelinePosition(timelinePosition);
+
+        }
 
     }
     public void stopTimeline()
