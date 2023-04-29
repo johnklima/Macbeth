@@ -88,10 +88,37 @@ public class CameraContoller : MonoBehaviour
 		pitch -= Input.GetAxis("Mouse Y") * mouseSensitivity;
 		pitch = Mathf.Clamp(pitch, pitchMinMax.x, pitchMinMax.y);
 
-		currentRotation = Vector3.SmoothDamp(currentRotation, new Vector3(pitch, yaw), ref rotationSmoothVelocity, rotationSmoothTime);
-		transform.eulerAngles = currentRotation;
+        if (isReset)
+        {
+            //if returning from diacam, snap right there
 
-		transform.position = target.transform.position - transform.forward * dstFromTarget;
+            isReset = false;
+            if (pitch > pitchMinMax.y)   //euler may be fliped by 360 
+                pitch -= 360;
+
+            //now try the clamp
+            pitch = Mathf.Clamp(pitch, pitchMinMax.x, pitchMinMax.y);
+
+            currentRotation = new Vector3(pitch, yaw);
+
+            Quaternion rot = Quaternion.Euler(currentRotation);
+
+            transform.rotation = rot;
+
+        }
+        else
+        {
+            pitch = Mathf.Clamp(pitch, pitchMinMax.x, pitchMinMax.y);
+
+            currentRotation = Vector3.Lerp(currentRotation, new Vector3(pitch, yaw), Time.deltaTime * 50f);
+
+            Quaternion rot = Quaternion.Euler(currentRotation);
+            transform.rotation = rot;
+
+
+
+        }
+        transform.position = target.transform.position - transform.forward * dstFromTarget;
     }
 
     void CameraBreathMovement()
