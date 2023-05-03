@@ -14,8 +14,17 @@ public class Portal : MonoBehaviour
         Debug.Log(other.name + " portal");
         if(other.tag == "Player")
         {
+                        
             player = other.transform;
-            teleport = true;
+            //dot product must use unit vectors
+            float dot = Vector3.Dot(player.forward, transform.forward);
+            Debug.Log("the dot is " + dot);
+
+            if(dot > 0)  //player forward is in the same direction
+                teleport = true;
+            else         //player forward is opposite direction
+                teleport = false;
+
         }
 
 
