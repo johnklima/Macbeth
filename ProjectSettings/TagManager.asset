@@ -6,6 +6,10 @@ TagManager:
   tags:
   - NPC
   - MobileTransitionObject
+  - Forest
+  - Grass
+  - Snow
+  - Gun
   layers:
   - Default
   - TransparentFX
@@ -13,7 +17,7 @@ TagManager:
   - 
   - Water
   - UI
-  - 
+  - Ground
   - 
   - 
   - 
