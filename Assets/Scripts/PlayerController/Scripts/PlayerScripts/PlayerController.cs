@@ -27,11 +27,17 @@ public class PlayerController : MonoBehaviour
 	Transform cameraT;
 	CharacterController controller;
 
+	public CameraContoller cameraContoller;
+
     [Header("Character Movement Check")]
     public bool isMoving;
 
     [Header("Camera Setting")]
     public bool bUseCameraControlRotation; // makes it so the rotation of the capsule follows the camera, Turning it off will make it so you can rotate with your camera without your character turning too.
+
+
+	public GameObject configScreen;
+	
 
     void Start()
 	{
@@ -41,8 +47,19 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
-        // input detection
-        Vector2 input = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
+
+		if (Input.GetKeyDown(KeyCode.Escape))
+        {
+			//open/close the config screen
+			configScreen.SetActive(!configScreen.activeSelf);
+			//toggle the mouse
+			cameraContoller.toggleMouse();
+
+		}
+			
+
+		// input detection
+		Vector2 input = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
         Vector2 inputDir = input.normalized;
         bool running = Input.GetKey(KeyCode.LeftShift);
         

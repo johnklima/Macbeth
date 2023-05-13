@@ -66,10 +66,10 @@ MonoBehaviour:
   Path: FMOD/Build/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 638192352011899461
+  lastModified: 638193199554653179
   FileSizes:
   - Name: Desktop
-    Value: 17274816
+    Value: 19687392
   Exists: 1
 --- !u!114 &-3484649608036376329
 MonoBehaviour:
@@ -131,6 +131,30 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 650
+--- !u!114 &-2205484470029641692
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Ambient1/ForestAmbient
+  m_EditorClassIdentifier: 
+  Name: ForestAmbient
+  StudioPath: 
+  Min: 0
+  Max: 1
+  Default: 0
+  ID:
+    data1: 3373160056
+    data2: 3266023779
+  Type: 0
+  IsGlobal: 0
+  Labels: []
+  Exists: 1
 --- !u!114 &-1727191199920193211
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -146,10 +170,10 @@ MonoBehaviour:
   Path: FMOD/Build/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 638192352011923265
+  lastModified: 638193199554671293
   FileSizes:
   - Name: Desktop
-    Value: 1320
+    Value: 1482
   Exists: 1
 --- !u!114 &-158927483145790419
 MonoBehaviour:
@@ -199,12 +223,13 @@ MonoBehaviour:
   - {fileID: 468807219017751660}
   - {fileID: -3484649608036376329}
   - {fileID: -3142684888146775809}
+  - {fileID: 7986376222098563912}
   EditorParameters: []
   MasterBanks:
   - {fileID: -4020834798877267899}
   StringsBanks:
   - {fileID: -1727191199920193211}
-  cacheTime: 638192352011923265
+  cacheTime: 638193199554671293
   cacheVersion: 131603
 --- !u!114 &468807219017751660
 MonoBehaviour:
@@ -308,6 +333,30 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 94000
+--- !u!114 &3594950686322550925
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Ambient1/Rain1
+  m_EditorClassIdentifier: 
+  Name: Rain1
+  StudioPath: 
+  Min: 0
+  Max: 1
+  Default: 0
+  ID:
+    data1: 3859467858
+    data2: 4292780720
+  Type: 0
+  IsGlobal: 0
+  Labels: []
+  Exists: 1
 --- !u!114 &4693518158249246827
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -413,6 +462,35 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 232752
+--- !u!114 &7986376222098563912
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Ambient1
+  m_EditorClassIdentifier: 
+  Path: event:/Ambient1
+  Guid:
+    Data1: 235545042
+    Data2: 1296645988
+    Data3: 240010131
+    Data4: 1599788454
+  Banks:
+  - {fileID: -4020834798877267899}
+  IsStream: 1
+  Is3D: 1
+  IsOneShot: 0
+  Parameters:
+  - {fileID: 3594950686322550925}
+  - {fileID: -2205484470029641692}
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 182000
 --- !u!114 &8215220788579428539
 MonoBehaviour:
   m_ObjectHideFlags: 0

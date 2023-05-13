@@ -156,4 +156,19 @@ public class CameraContoller : MonoBehaviour
         isReset = true;
 
     }
+    public void toggleMouse()
+    {
+        if (Cursor.lockState == CursorLockMode.Locked)
+        {
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
+        }
+        else if (lockCursor)
+        {
+            Cursor.lockState = CursorLockMode.Locked;
+            Cursor.visible = false;
+
+        }
+
+    }
 }
